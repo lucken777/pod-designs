@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>THE MADE — Infographic A: The Address System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  :root{
+    --void:#070A0C;
+    --cyan:#0E2A33;
+    --steel:#3A4A52;
+    --white:#E8F1F3;
+    --fog:#9FB7BC;
+    --copper:#B06A3B;
+    --amber:#D98A2B;
+  }
+  html,body{margin:0;padding:0;background:#000;}
+  /* 16:9, 2K master frame */
+  .frame{
+    position:relative;
+    width:2560px;height:1440px;
+    background:
+      radial-gradient(120% 90% at 50% 38%, #0c1e24 0%, var(--void) 60%, #040607 100%);
+    overflow:hidden;
+    font-family:'Inter Tight',sans-serif;
+    color:var(--white);
+  }
+  /* faint engineering grid */
+  .grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(63,90,98,.10) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(63,90,98,.10) 1px,transparent 1px);
+    background-size:80px 80px;
+    mask-image:radial-gradient(75% 70% at 50% 45%,#000 55%,transparent 100%);
+  }
+  /* grain + vignette */
+  .vignette{position:absolute;inset:0;box-shadow:inset 0 0 420px 90px rgba(0,0,0,.85);pointer-events:none;}
+  .grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+
+  /* corner reticle brackets */
+  .bracket{position:absolute;width:70px;height:70px;border:2px solid var(--steel);}
+  .tl{top:48px;left:48px;border-right:0;border-bottom:0;}
+  .tr{top:48px;right:48px;border-left:0;border-bottom:0;}
+  .bl{bottom:48px;left:48px;border-right:0;border-top:0;}
+  .br{bottom:48px;right:48px;border-left:0;border-top:0;}
+
+  /* header */
+  .kicker{position:absolute;top:84px;left:120px;
+    font-family:'JetBrains Mono',monospace;font-size:24px;letter-spacing:10px;
+    color:var(--cyan);filter:brightness(2.1);}
+  .title{position:absolute;top:118px;left:118px;
+    font-weight:900;font-size:104px;letter-spacing:-2px;line-height:.95;}
+  .subtitle{position:absolute;top:250px;left:122px;
+    font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:2px;color:var(--fog);}
+
+  .stamp{position:absolute;top:96px;right:130px;transform:rotate(-7deg);
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;
+    color:var(--amber);border:3px solid var(--amber);padding:10px 22px;border-radius:4px;
+    opacity:.9;letter-spacing:4px;}
+
+  /* LEFT: comparison panel */
+  .panel{position:absolute;left:120px;top:430px;width:760px;}
+  .row{margin-bottom:64px;}
+  .row .lab{font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:4px;color:var(--fog);margin-bottom:18px;}
+  .big{font-weight:800;font-size:66px;line-height:1;}
+  .big .u{font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--fog);font-weight:500;letter-spacing:1px;}
+  .copper{color:var(--copper);}
+
+  .divider{position:absolute;left:120px;top:430px;height:560px;width:1px;background:linear-gradient(var(--steel),transparent);}
+
+  /* CENTER: 16 chromosome rings grid */
+  .rings{position:absolute;left:980px;top:430px;width:760px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:36px 36px;}
+  .ringcell{display:flex;flex-direction:column;align-items:center;}
+  .ringcell svg{display:block;}
+  .ringcell .tag{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--copper);margin-top:8px;letter-spacing:1px;}
+
+  /* RIGHT: callout — one gene with address barcode */
+  .callout{position:absolute;right:120px;top:470px;width:560px;
+    border:1px solid var(--steel);padding:40px 44px;background:rgba(8,16,19,.55);}
+  .callout .ch{font-family:'JetBrains Mono',monospace;font-size:24px;letter-spacing:3px;color:var(--fog);}
+  .callout .hl{font-weight:800;font-size:46px;margin:14px 0 30px;}
+  .barcode{height:120px;width:100%;display:flex;align-items:stretch;gap:3px;margin-bottom:18px;}
+  .barcode i{display:block;background:var(--copper);}
+  .addr{font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--copper);letter-spacing:2px;}
+  .addrlabel{font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--fog);letter-spacing:3px;margin-top:26px;}
+
+  .leader{position:absolute;border-top:1px dashed var(--steel);}
+
+  /* footer caption */
+  .foot{position:absolute;bottom:96px;left:122px;
+    font-family:'JetBrains Mono',monospace;font-size:24px;color:var(--fog);letter-spacing:2px;}
+  .foot b{color:var(--copper);font-weight:700;}
+  .src{position:absolute;bottom:96px;right:130px;font-family:'JetBrains Mono',monospace;
+    font-size:20px;color:var(--steel);letter-spacing:3px;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="grid"></div>
+
+  <div class="bracket tl"></div><div class="bracket tr"></div>
+  <div class="bracket bl"></div><div class="bracket br"></div>
+
+  <div class="kicker">SECTION 07 // GENOME ANALYSIS</div>
+  <div class="title">THE ADDRESS<br>SYSTEM</div>
+  <div class="subtitle">// every gene carries its own coordinate</div>
+  <div class="stamp">EYES ONLY</div>
+
+  <!-- LEFT comparison -->
+  <div class="divider"></div>
+  <div class="panel">
+    <div class="row">
+      <div class="lab">HUMAN GENOME</div>
+      <div class="big">23 <span class="u">pairs · linear · ~99% junk DNA</span></div>
+    </div>
+    <div class="row">
+      <div class="lab">EBO GENOME</div>
+      <div class="big copper">16 <span class="u">circular · indexed · &lt;2% non-coding</span></div>
+    </div>
+    <div class="row">
+      <div class="lab">PER-GENE TAG</div>
+      <div class="big">TPR <span class="u">134 bp · 3 palindromes · unique 64 bp address</span></div>
+    </div>
+  </div>
+
+  <!-- CENTER 16 rings -->
+  <div class="rings" id="rings"></div>
+
+  <!-- RIGHT callout -->
+  <div class="callout">
+    <div class="ch">CHROMOSOME 04 // GENE 0x7F</div>
+    <div class="hl">Built-in barcode</div>
+    <div class="barcode" id="barcode"></div>
+    <div class="addr">GEN-ADDR 0x7F : 4A1C-99E2</div>
+    <div class="addrlabel">// not found in any terrestrial organism</div>
+  </div>
+
+  <div class="foot">FINDING: uniformity &amp; per-gene addressing &rarr; <b>not evolved — engineered.</b></div>
+  <div class="src">THE MADE — EP.01 / FIG.A / 2560×1440</div>
+
+  <script>
+    // build 16 circular chromosome rings
+    const rings=document.getElementById('rings');
+    for(let n=1;n<=16;n++){
+      const cell=document.createElement('div');cell.className='ringcell';
+      const r=58, cx=70, cy=70, seg=10;
+      let parts='';
+      for(let s=0;s<seg;s++){
+        const a0=(s/seg)*2*Math.PI, a1=((s+0.78)/seg)*2*Math.PI;
+        const x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0);
+        const x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+        const col = (s%4===0) ? '#B06A3B' : '#3A4A52';
+        parts+=`<path d="M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="${col}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+      }
+      cell.innerHTML=`<svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="58" stroke="#16323b" stroke-width="1" fill="none"/>
+        ${parts}
+      </svg><div class="tag">CHR-${String(n).padStart(2,'0')}</div>`;
+      rings.appendChild(cell);
+    }
+    // build barcode
+    const bc=document.getElementById('barcode');
+    const widths=[6,2,9,3,2,11,4,2,7,3,9,2,5,12,3,2,8,4,2,10,3,6,2,9,4,2,7,11,3,2,8];
+    widths.forEach(w=>{const i=document.createElement('i');i.style.flex=w;bc.appendChild(i);});
+  </script>
+
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+</body>
+</html>
